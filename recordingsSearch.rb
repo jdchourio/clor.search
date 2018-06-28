@@ -2,6 +2,7 @@ require 'sinatra'
 require "sinatra/namespace"
 require 'mongoid'
 require 'sinatra/contrib'
+require 'rails/mongoid'
 
 # Models
 class Recording
