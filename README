@@ -1,0 +1,10 @@
+How we solved problems:
+
+http://sinatrarb.com/contrib/namespace
+
+https://github.com/sinetris/sinatra-example-bundler/blob/master/config.ru
+
+https://bundler.io/v1.16/man/gemfile.5.html
+
+https://github.com/mongodb/mongoid/blob/master/lib/rails/generators/mongoid/config/templates/mongoid.yml
+
