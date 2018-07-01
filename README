@@ -9,3 +9,13 @@ https://bundler.io/v1.16/man/gemfile.5.html
 https://github.com/mongodb/mongoid/blob/master/lib/rails/generators/mongoid/config/templates/mongoid.yml
 
 https://stackoverflow.com/questions/15354936/rails-engine-mongoid-no-configuration-could-be-found-for-a-session-named-def -- Second response.
+
+How to develop
+
+* Develop in local environment
+* Launch application with command: bundle exec rackup
+* Test. Sample URL: http://localhost:9292/recordings?recordType=STU&singer=baltsa&singer=freni
+* Commit with git. Check in github that commit is OK
+* Go to heroku dashborard. Deploy from branch.
+* Test. Sample URL: https://opera-discography.herokuapp.com/recordings?composer=rossini&recordType=STU&opera=cenerentola
+
