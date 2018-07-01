@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <style>
+    body {
+      width: 1000px;
+      margin: 50px auto;
+      font-family: Palatino, serif;
+      background-color: #dbd4c2;
+      color: #555050;
+    }
+    h2 {
+      margin-top: 2em;
+      font-family: Arial, sans-serif;
+      font-weight: 100;
+    }
+  </style>
+</head>
+<body>
+<h1>CLOR</h1>
+<% @recordings.each do |record| %>
+  <h2><%= record['opera']['name'] %> (<%= record['composer']['name'] %>)</h2>
+  <p>Conductor: <%= record['conductor'] %></p>
+  <p>Year: <%= record.yearAndRecordingType %></p>
+  <p>Releases: <%= record.editions.where('medium' => 'cd').first.reference if record.editions.where('medium' => 'cd').any? %></p>
+  <p>
+	<% record.singers.each do |singer| %>
+		<p>Name: <%= singer.name %> (<%= singer.characterName %>)</p>
+	<% end %>
+  </p>
+  <p>Id: <%= record.id %></p>
+<% end %>
+</body>
+</html>

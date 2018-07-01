@@ -1,57 +1,18 @@
+$LOAD_PATH << File.dirname(__FILE__)
+
 require 'sinatra'
 require "sinatra/namespace"
 require 'mongoid'
 require 'sinatra/contrib'
 require 'rails/mongoid'
 
+require 'model/recording'
+require 'model/opera'
+require 'model/composer'
+require 'model/singer'
+require 'model/edition'
+
 # Models
-class Recording
-  include Mongoid::Document
-  
-  store_in collection: "releases"
-
-  field :language
-  field :conductor
-  field :yearAndRecordingType
-  
-  embeds_one :composer
-  embeds_one :opera
-  embeds_many :singers
-  embeds_many :editions
-  
-  scope :conductor, -> (conductor) { where(conductor: /#{conductor}/i) }
-  scope :composer, -> (composer) { where('composer.name': /#{composer}/i) }
-  scope :singer, -> (singer) { where('singers.name': /#{singer}/i) }
-  scope :opera, -> (opera) { where('opera.name': /#{opera}/i) }
-  scope :recordType, -> (recordType) { where(yearAndRecordingType: /#{recordType}/i) }
-end
-
-class Composer
-  include Mongoid::Document
-
-  field :name
-end
-
-class Singer
-  include Mongoid::Document
-  
-    field :name
-    field :characterName
-end
-
-class Opera
-  include Mongoid::Document
-
-  field :name
-end
-
-class Edition
-  include Mongoid::Document
-  
-  field :medium
-  field :reference
-end
-
 # Serializers
 class RecordingSerializer
   def initialize(recording)
@@ -109,6 +70,21 @@ class Application < Sinatra::Base
   
   get '/' do
     'Welcome to Recordings!'
+  end
+  
+  get '/recordings' do
+    #TODO replace with common code
+    @recordings = Recording.all
+    
+    [:conductor,:composer,:recordType,:singer,:opera].each do |filter|
+      @recordings = @recordings.send(filter, params[filter]) if params[filter]
+    end
+    
+    @recordings = @recordings.sort({ "yearAndRecordingType" => 1}).limit(100)
+      
+#    @recordings = @recordings.map { |recording| RecordingSerializer.new(recording) }.as_json
+      
+    erb :recordings
   end
   
   namespace '/api/v1' do
