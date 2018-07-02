@@ -17,4 +17,5 @@ class Recording
   scope :singer, -> (singer) { where('singers.name': /#{singer}/i) }
   scope :opera, -> (opera) { where('opera.name': /#{opera}/i) }
   scope :recordType, -> (recordType) { where(yearAndRecordingType: /#{recordType}/i) }
+  scope :edition, -> (edition) { where('editions.reference': /#{edition}/i) }
 end

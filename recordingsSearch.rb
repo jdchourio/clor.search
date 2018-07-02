@@ -76,7 +76,7 @@ class Application < Sinatra::Base
     #TODO replace with common code
     @recordings = Recording.all
     
-    [:conductor,:composer,:recordType,:singer,:opera].each do |filter|
+    [:conductor,:composer,:recordType,:singer,:opera,:edition].each do |filter|
       @recordings = @recordings.send(filter, params[filter]) if params[filter]
     end
     
@@ -96,7 +96,7 @@ class Application < Sinatra::Base
     get '/recordings' do
       recordings = Recording.all
       
-      [:conductor,:composer,:recordType,:singer,:opera].each do |filter|
+      [:conductor,:composer,:recordType,:singer,:opera,:edition].each do |filter|
         recordings = recordings.send(filter, params[filter]) if params[filter]
       end
       
