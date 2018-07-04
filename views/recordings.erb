@@ -22,11 +22,11 @@
 <% index = 1 %>
 <% @recordings.each do |record| %>
   <h2><%=index%>. <%= record['opera']['name'] %> (<%= record['composer']['name'] %>, <%= record['conductor'] %>, <%= record.yearAndRecordingType %>)</h2>
-  <p><b>Conductor: </b><%= record['conductor'] %></p>
+  <p><b>Conductor: </b><a href="/recordings?conductor=<%= record['conductor'] %>&recordType=STU"><%= record['conductor'] %></a></p>
   <p><b>Orchestra: </b><%= record['orchestra'] %></p>
   <p><b>Cast: </b>
 	<% record.singers.each do |singer| %>
-		<p><%= singer.name %> (<i><%= singer.characterName %></i>)</p>
+		<p><a href="/recordings?singer=<%= singer.name %>&recordType=STU"><%= singer.name %></a> (<i><%= singer.characterName %></i>)</p>
 	<% end %>
   </p>
   <p><b>Recording: </b><%= record.yearAndRecordingType %></p>
