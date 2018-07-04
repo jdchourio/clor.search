@@ -21,7 +21,7 @@
 <h1>CLOR</h1>
 <% index = 1 %>
 <% @recordings.each do |record| %>
-  <h2><%=index%>. <%= record['opera']['name'] %> (<%= record['composer']['name'] %>)</h2>
+  <h2><%=index%>. <%= record['opera']['name'] %> (<%= record['composer']['name'] %>, <%= record['conductor'] %>, <%= record.yearAndRecordingType %>)</h2>
   <p><b>Conductor: </b><%= record['conductor'] %></p>
   <p><b>Orchestra: </b><%= record['orchestra'] %></p>
   <p><b>Cast: </b>
