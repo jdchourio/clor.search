@@ -68,6 +68,8 @@ class Application < Sinatra::Base
   
   Mongoid.load! "mongoid.config"
   
+#  set :public_folder, File.dirname(__FILE__)
+  
   get '/' do
     'Welcome to Recordings!'
   end
