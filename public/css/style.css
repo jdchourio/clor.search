@@ -1,0 +1,19 @@
+body {
+  width: 1000px;
+  margin: 50px auto;
+  font-family: Palatino, serif;
+  background-color: #dbd4c2;
+  color: #555050;
+}
+
+h2 {
+  margin-top: 2em;
+  font-family: Arial, sans-serif;
+  font-weight: 100;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+}
